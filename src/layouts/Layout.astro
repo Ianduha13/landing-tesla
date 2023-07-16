@@ -20,7 +20,20 @@ const { title } = Astro.props;
 		<slot />
 	</body>
 </html>
+<style lang="css">
+  :global(::-webkit-scrollbar) {
+    width: 5px;
+  }
+  :global(::-webkit-scrollbar-track) {
+    background: #000;
+  }
+  :global(::-webkit-scrollbar-thumb) {
+    background: gray;
+    border-radius: 10px;
+  }
+</style>
 <style is:global>
+  
 	<style is:global>
   @font-face {
     font-family: "Gotham SSm A";
