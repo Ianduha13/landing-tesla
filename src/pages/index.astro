@@ -2,6 +2,7 @@
 import HeroSection from "../components/HeroSection.astro";
 import Header from "../components/LandingHeader.astro";
 import ModelYSection from "../components/ModelYSection.astro";
+import Section from "../components/Section.astro";
 import Layout from "../layouts/Layout.astro"
 ---
 
@@ -9,13 +10,26 @@ import Layout from "../layouts/Layout.astro"
 	<Header />
 	<main class="relative w-full h-screen overflow-auto overflow-x-hidden snap-y snap-mandatory">
 		<div class="snap-center">
-		<HeroSection/>
-	</div>
-		<div class="snap-center">
-		<ModelYSection/>
-	</div>
-		<div class="snap-center">
-		<HeroSection/>
-	</div>
+			<HeroSection/>
+		</div>
+			<div class="snap-center">
+				<Section title="Model S" subtitle="Schedule a test drive right now" color="white" >
+					<img slot="background" src="/ModelS.jpeg" alt=" ModelY" class=" h-full w-full object-cover object-center">
+				</Section>
+			</div>
+			<div class="snap-center">
+				<Section title="Model 3" subtitle="Schedule a test drive right now" color="white">
+					<img slot="background" src="/Model3.jpeg" alt=" Model3" class=" h-full w-full object-cover object-center">
+				</Section>
+			</div>
+			<div class="snap-center">
+				<Section title="Model X" subtitle="Schedule a test drive right now" color="black">
+					<img slot="background" src="/ModelX.jpeg" alt=" ModelY" class=" h-full w-full object-cover object-center">
+				</Section>
+			</div>
+			<div class="snap-center">
+				<ModelYSection/>
+			</div>
+		</div>
 	</main>
 </Layout>
