@@ -11,7 +11,7 @@ import Logo from "./Logo.astro";
   </div>
   <nav>
     <ul
-      class="flex text-sm [&>li>a]:font-medium [&>li>a]:text-current [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2"
+      class="flex text-sm [&>li>a]:font-medium [&>li>a]:transition-colors [&>li>a]:duration-300 [&>li>a]:text-current [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2"
     >
       <li><a href="#">Model S</a></li>
       <li><a href="#">Model 3</a></li>
@@ -23,7 +23,7 @@ import Logo from "./Logo.astro";
   </nav>
   <nav class="flex flex-grow justify-end basis-0">
     <ul
-      class="flex text-sm [&>li>a]:font-medium [&>li>a]:text-current [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2"
+      class="flex text-sm [&>li>a]:font-medium [&>li>a]:transition-colors [&>li>a]:duration-300 [&>li>a]:text-current [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2"
     >
       <li><a href="#">Support</a></li>
       <li><a href="#">Store</a></li>
@@ -31,9 +31,16 @@ import Logo from "./Logo.astro";
       <li><a href="#">Menu</a></li>
     </ul>
   </nav>
+  <div id="menu-backdrop" 
+  class={`absolute bg-black/5 backdrop-blur-lg rounded 
+  translate-x-[var(--left)] translate-y-[var(--top)] 
+  left-0 top-0
+  w-[var(--width)] h-[var(--height)] 
+  transition-all duration-300 
+  ease-in-out z-[-10] opacity-0`}/>
 </header>
-<script>
 
+<script>
   const $header = document.querySelector("#landing-header") as HTMLElement
   const observerOptions = {
     root: null,
@@ -48,10 +55,29 @@ import Logo from "./Logo.astro";
         const color = entry.target.getAttribute("data-header-color")
         $header.style.color = color
       }
-    })
+     })
   }, observerOptions)
 
   const $sections = document.querySelectorAll(".landing-section")
   $sections.forEach(section => observer.observe(section))
+</script>
+<script>
+  const listItem = document.querySelectorAll("#landing-header li")
+  const menuBackdrop = document.querySelector("#menu-backdrop") as HTMLElement
 
+  listItem.forEach((item)=>{
+    item.addEventListener("mouseenter", ()=>{
+      const {left, top, width, height} = item.getBoundingClientRect()
+      menuBackdrop.style.setProperty("--left", `${left}px`)
+      menuBackdrop.style.setProperty("--top", `${top}px`)
+      menuBackdrop.style.setProperty("--width", `${width}px`)
+      menuBackdrop.style.setProperty("--height", `${height}px`)
+      menuBackdrop.style.opacity = "1"
+      menuBackdrop.style.visibility = "visible"
+    })
+    item.addEventListener("mouseleave", ()=>{
+      menuBackdrop.style.opacity = "0"
+      menuBackdrop.style.visibility = "hidden"
+    })
+  })
 </script>
